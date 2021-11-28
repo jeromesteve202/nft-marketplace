@@ -4,7 +4,8 @@ require('dotenv').config();
 const fs = require('fs');
 const privateKey = fs.readFileSync(".secret").toString();
 
-ts = {
+module.exports = {
+  defaultNetwork: "hardhat",
   networks: {
     hardhat: {
       chainId: 1337
@@ -18,5 +19,13 @@ ts = {
       accounts: [privateKey]
     }
   },
-  solidity: "0.8.4",
-};
+  solidity: {
+    version: "0.8.4",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  }
+}
